@@ -1,0 +1,65 @@
+{
+  "name": "noscript-model-define",
+  "version": "0.0.1",
+  "description": "Плагин для noscript, улучшающий наследование Model",
+  "keywords": [
+    "noscript",
+    "inherit"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yandex-ui/noscript-model-define.git"
+  },
+  "author": {
+    "name": "Rikishi",
+    "email": "rikishi@protonmail.ch",
+    "url": "https://github.com/Katochimoto"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yandex-ui/noscript-model-define/issues"
+  },
+  "homepage": "https://github.com/yandex-ui/noscript-model-define",
+  "main": "dist/define.js",
+  "devDependencies": {
+    "babel": "6.5.2",
+    "babel-cli": "6.14.0",
+    "babel-eslint": "6.1.2",
+    "babel-loader": "6.2.5",
+    "babel-preset-es2015": "6.14.0",
+    "babel-preset-stage-0": "6.5.0",
+    "babel-register": "6.14.0",
+    "chai": "3.5.0",
+    "eslint": "3.6.0",
+    "eslint-config-yandex": "1.0.6",
+    "eslint-loader": "1.5.0",
+    "istanbul-instrumenter-loader": "1.0.0",
+    "jquery": "1.11.3",
+    "karma": "1.3.0",
+    "karma-babel-preprocessor": "6.0.1",
+    "karma-chai": "0.1.0",
+    "karma-coverage": "1.1.1",
+    "karma-mocha": "1.1.1",
+    "karma-phantomjs-launcher": "1.0.2",
+    "karma-sinon-chai": "1.2.4",
+    "karma-sourcemap-loader": "0.3.7",
+    "karma-webpack": "1.8.0",
+    "lodash": "4.16.1",
+    "mocha": "3.0.2",
+    "noscript": ">=0.4.3",
+    "preprocess": "^3.1.0",
+    "preprocess-loader": "^0.2.0",
+    "sinon": "1.17.6",
+    "sinon-chai": "2.8.0",
+    "webpack": "1.13.2"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "prod": "./node_modules/.bin/webpack --progress",
+    "dev": "./node_modules/.bin/webpack --progress --watch",
+    "test": "./node_modules/karma/bin/karma start",
+    "codeclimate": "npm run test; CODECLIMATE_REPO_TOKEN=33ebe4a5e25ce8bcfbd1dac77c79dd498f06daaf477a05eefa3571f96c2c6c18 codeclimate-test-reporter < coverage/report/lcov.info"
+  }
+}
