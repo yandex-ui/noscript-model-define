@@ -60,6 +60,7 @@
     "prod": "./node_modules/.bin/webpack --progress",
     "dev": "./node_modules/.bin/webpack --progress --watch",
     "test": "./node_modules/karma/bin/karma start",
+    "test-dev": "./node_modules/karma/bin/karma start --single-run=false",
     "codeclimate": "npm run test; CODECLIMATE_REPO_TOKEN=33ebe4a5e25ce8bcfbd1dac77c79dd498f06daaf477a05eefa3571f96c2c6c18 codeclimate-test-reporter < coverage/report/lcov.info"
   }
 }

@@ -38,7 +38,8 @@ module.exports = function(config) {
     webpack: {
         'devtool': '#inline-source-map',
         'externals': {
-            'ns': 'ns'
+            'ns': 'ns',
+            'lodash': '_'
         },
         'module': {
             'loaders': [
@@ -54,7 +55,7 @@ module.exports = function(config) {
             'postLoaders': [
                 {
                     'test': /\.js/,
-                    'loader': 'istanbul-instrumenter',
+                    'loader': 'istanbul-instrumenter!preprocess?+NOLODASH',
                     'include': [
                         path.join(__dirname, 'src')
                     ]

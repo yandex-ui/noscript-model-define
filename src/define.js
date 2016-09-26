@@ -87,18 +87,11 @@ function wrapperEvents(srcFunc, objFunc, ...args) {
  * Объединение колбеков одинаковых событий
  * @param {string|function} objValue
  * @param {string|function} srcValue
- * @param {string} key
  * @returns {string|function}
  */
-function eventsCustomizer(objValue, srcValue, key) {
+function eventsCustomizer(objValue, srcValue) {
     if (checkIgnoreMerge(objValue, srcValue)) {
         return srcValue;
-    }
-
-    if ((objValue === 'invalidate' && srcValue === 'keepValid') ||
-        (objValue === 'keepValid' && srcValue === 'invalidate')) {
-
-        ns.assert.fail('ns.Model.define', 'Попытка определить подписки с противоположными действиями. Событие: %s', key);
     }
 
     return wrap(objValue, wrap(srcValue, wrapperEvents));
@@ -154,14 +147,6 @@ function mergeCustomizer(objValue, srcValue, key) {
         return groupEventsCustomizer(objValue, srcValue);
     }
 
-    if (key === 'models') {
-        return mergeWith(
-            this._formatModelsDecl(objValue),
-            this._formatModelsDecl(srcValue),
-            groupEventsCustomizer
-        );
-    }
-
     if (key === 'ctor') {
         return function () {
             srcValue && srcValue.call(this);
@@ -176,7 +161,7 @@ function mergeCustomizer(objValue, srcValue, key) {
  * @returns {Object}
  */
 function modelInfo(info) {
-    return isString(info) && ns.Model.info(info) || info;
+    return isString(info) && ns.Model.infoLite(info) || info;
 }
 
 /**
@@ -214,7 +199,7 @@ function inheritInfo(classExtend, child, mixins) {
     return info;
 }
 
-[ ns.Model, ns.ModelCollection ].forEach(function (classExtend) {
+[ ns.Model ].forEach(function (classExtend) {
 
     /**
      * Декларация модели
@@ -226,15 +211,5 @@ function inheritInfo(classExtend, child, mixins) {
     classExtend.edefine = function (id, info, ...mixins) {
         ns.DEBUG && log('Определение модели %s, mixins: %o, %o', id, mixins, get(info, 'mixins', []));
         return classExtend.define(id, inheritInfo(classExtend, info, mixins), last(mixins));
-    };
-
-    /**
-     * Формирование объекта событий модели
-     * @param {Object} events пользовательские события
-     * @param {Object|boolean} [defaultDecl=false] значение событий по умолчанию
-     * @returns {Object}
-     */
-    classExtend.defineModelEvents = function (events, defaultDecl = false) {
-        return defaults({}, events, get(classExtend._formatModelsDecl({ test: defaultDecl }), 'test'));
     };
 });
