@@ -61,6 +61,6 @@
     "dev": "./node_modules/.bin/webpack --progress --watch",
     "test": "./node_modules/karma/bin/karma start",
     "test-dev": "./node_modules/karma/bin/karma start --single-run=false",
-    "codeclimate": "npm run test; CODECLIMATE_REPO_TOKEN=33ebe4a5e25ce8bcfbd1dac77c79dd498f06daaf477a05eefa3571f96c2c6c18 codeclimate-test-reporter < coverage/report/lcov.info"
+    "codeclimate": "npm run test; CODECLIMATE_REPO_TOKEN=448be7e0b753c0fe4d727b555f8953ef9ef77306da2dceb6fe0eb4ce300d5bde codeclimate-test-reporter < coverage/report/lcov.info"
   }
 }
